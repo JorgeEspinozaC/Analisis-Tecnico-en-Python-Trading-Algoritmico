@@ -47,7 +47,8 @@ def Media_Movil_Simple(df: pd.DataFrame, longitud: int = 21, columna: str = "Clo
     return MA
     
 # Obtener Datos
-df = yf.download("NFLX", start="2023-01-01", end="2024-01-01", interval="1d") 
+nflx = yf.Ticker("NFLX")
+df = nflx.history( start="2023-01-01", end="2024-01-01", interval="1d")
 
 # Calcular Indicador
 media_mov_9 = Media_Movil_Simple(df, longitud=9, columna="Close")

@@ -50,8 +50,9 @@ def Cruce_Medias_Moviles(df: pd.DataFrame, longitud_rapida: int = 9, longitud_le
     
     return MAC
 
-# Obtener Datos
-df = yf.download("TSLA", start="2020-01-01", end="2024-01-01", interval="1d")
+# Obtener Datos∫
+ticker = yf.Ticker("XRP-USD")
+df =  ticker.history(start="2022-01-01", end="2024-12-30", interval="1d")
 
 # Calcular Indicador
 mac = Cruce_Medias_Moviles(df, longitud_rapida=9, longitud_lenta=26, columna="Close")

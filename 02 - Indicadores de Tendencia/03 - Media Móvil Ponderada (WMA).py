@@ -44,7 +44,8 @@ def Media_Movil_Ponderada(df: pd.DataFrame, longitud: int = 9, columna: str = "C
     return WMA
 
 # Obtener Datos
-df = yf.download("META", start="2023-01-01", end="2024-01-01", interval="1d")
+meta = yf.Ticker("META");
+df =  meta.history(start="2023-01-01", end="2024-12-20", interval="1d")
 
 # Calcular Indicador
 wma_9 = Media_Movil_Ponderada(df, longitud=9, columna="Close")

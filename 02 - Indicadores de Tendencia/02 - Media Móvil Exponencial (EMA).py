@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 # Indicador: Media Móvil Exponencial (EMA)
 def Media_Movil_Exponencial(df: pd.DataFrame, longitud: int = 26, columna: str = "Close") -> pd.Series:
-    
+
     """
     La Media Móvil Exponencial (EMA) es un indicador técnico que rastrea el precio de un activo (como una acción o una mercancía)
     a lo largo del tiempo. La EMA es un tipo de media móvil ponderada (WMA) que otorga más peso o importancia a los datos
@@ -41,7 +41,8 @@ def Media_Movil_Exponencial(df: pd.DataFrame, longitud: int = 26, columna: str =
     return EMA
 
 # Descargar los datos
-df = yf.download("MSFT", start="2023-01-01", end="2024-01-01", interval="1d")
+msft = yf.Ticker("MSFT");
+df =  msft.history(start="2023-01-01", end="2024-01-01", interval="1d")
 
 # Calcular Indicador
 ema_12 = Media_Movil_Exponencial(df, longitud=12, columna="Close")
