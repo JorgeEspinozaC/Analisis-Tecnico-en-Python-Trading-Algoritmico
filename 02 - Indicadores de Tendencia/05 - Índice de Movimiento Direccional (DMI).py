@@ -5,6 +5,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 # Indicador: Índice de Movimiento Direccional
 def Indice_Movimiento_Direccional(df: pd.DataFrame, suavizado_ADX: int = 14, longitud_DI: int = 14) -> pd.DataFrame:
     
@@ -76,7 +77,8 @@ def Indice_Movimiento_Direccional(df: pd.DataFrame, suavizado_ADX: int = 14, lon
     return ADX.merge(ADXI, how="outer", left_index=True, right_index=True)
 
 # Obtener Datos
-df = yf.download("SQ", start="2020-01-01", end="2024-01-01", interval="1d")
+ticker = yf.Ticker("XRP-USD")
+df = ticker.history(start="2022-01-01", end="2025-01-01", interval="1d")
 
 # Calcular Indicador
 dmi = Indice_Movimiento_Direccional(df, suavizado_ADX=14, longitud_DI=14)
@@ -92,7 +94,11 @@ ax.plot(dmi.index, dmi["ADX"], label="ADX", color="green")
 ax.fill_between(dmi.index, y1=0, y2=dmi["+DI"], where=(dmi["+DI"] > dmi["-DI"]), color="lightblue", alpha=0.5)
 ax.fill_between(dmi.index, y1=0, y2=dmi["-DI"], where=(dmi["+DI"] < dmi["-DI"]), color="lightcoral", alpha=0.5)
 ax.legend(fontsize=15, loc="upper right")
-ax.set_title("Índice de Movimiento Direccional (+DI, -DI y ADX)", size=20, fontweight="bold")
+
+# Obtener la información del Ticker
+info = ticker.info.get('longName')
+
+ax.set_title("Índice de Movimiento Direccional (+DI, -DI y ADX) - "+ info  , size=20, fontweight="bold")
 ax.grid(True)
 
 plt.tight_layout()

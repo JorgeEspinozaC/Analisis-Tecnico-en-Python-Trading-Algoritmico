@@ -50,9 +50,9 @@ def Cruce_Medias_Moviles(df: pd.DataFrame, longitud_rapida: int = 9, longitud_le
     
     return MAC
 
-# Obtener Datos∫
-ticker = yf.Ticker("XRP-USD")
-df =  ticker.history(start="2022-01-01", end="2024-12-30", interval="1d")
+# Obtener Datos
+ticker = yf.Ticker("^GSPC")
+df =  ticker.history(start="2022-08-01", end="2025-02-02", interval="1d")
 
 # Calcular Indicador
 mac = Cruce_Medias_Moviles(df, longitud_rapida=9, longitud_lenta=26, columna="Close")
@@ -99,7 +99,10 @@ for i in range(1, filas):
 # Configurar las leyendas y etiquetas
 axes.legend(fontsize=15, loc="lower left")
 
-plt.title("Indicador de Cruce de Medias Móviles", size=24, fontweight="bold")
+# Obtener la información del Ticker
+info = ticker.info.get('longName')
+
+plt.title("Indicador de Cruce de Medias Móviles - " + info, size=24, fontweight="bold")
 plt.suptitle("Señales de Compra y Venta basadas en el cruce de medias móviles", size=16, style="italic")
 plt.grid(visible=True, linestyle="--", linewidth=0.75)
 plt.show()
