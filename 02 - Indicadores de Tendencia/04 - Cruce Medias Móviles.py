@@ -51,8 +51,10 @@ def Cruce_Medias_Moviles(df: pd.DataFrame, longitud_rapida: int = 9, longitud_le
     return MAC
 
 # Obtener Datos
-ticker = yf.Ticker("^GSPC")
-df =  ticker.history(start="2022-08-01", end="2025-02-02", interval="1d")
+ticker = yf.Ticker("XRP-USD")
+# fecha de hoy en formato yyyy-mm-dd
+hoy = pd.Timestamp.today().strftime("%Y-%m-%d")
+df =  ticker.history(start="2022-08-01", end=hoy, interval="1d")
 
 # Calcular Indicador
 mac = Cruce_Medias_Moviles(df, longitud_rapida=9, longitud_lenta=26, columna="Close")

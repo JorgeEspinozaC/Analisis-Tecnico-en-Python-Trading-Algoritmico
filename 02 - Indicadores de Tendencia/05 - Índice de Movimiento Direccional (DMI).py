@@ -77,8 +77,10 @@ def Indice_Movimiento_Direccional(df: pd.DataFrame, suavizado_ADX: int = 14, lon
     return ADX.merge(ADXI, how="outer", left_index=True, right_index=True)
 
 # Obtener Datos
-ticker = yf.Ticker("XRP-USD")
-df = ticker.history(start="2022-01-01", end="2025-01-01", interval="1d")
+ticker = yf.Ticker("^GSPC")
+#fecha de hoy en formato yyyy-mm-dd
+hoy = pd.Timestamp.today().strftime('%Y-%m-%d')
+df = ticker.history(start="2022-01-01", end=hoy, interval="1d")
 
 # Calcular Indicador
 dmi = Indice_Movimiento_Direccional(df, suavizado_ADX=14, longitud_DI=14)
@@ -98,7 +100,7 @@ ax.legend(fontsize=15, loc="upper right")
 # Obtener la información del Ticker
 info = ticker.info.get('longName')
 
-ax.set_title("Índice de Movimiento Direccional (+DI, -DI y ADX) - "+ info  , size=20, fontweight="bold")
+ax.set_title(f"Índice de Movimiento Direccional (+DI, -DI y ADX) - ({info})"  , size=20, fontweight="bold")
 ax.grid(True)
 
 plt.tight_layout()

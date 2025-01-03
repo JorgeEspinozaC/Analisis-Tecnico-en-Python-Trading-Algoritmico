@@ -77,7 +77,9 @@ def Ichimoku_Cloud(df: pd.DataFrame, periodo_tenkan: int = 9, periodo_kijun: int
     return IC
 
 # Descargar los datos históricos
-df = yf.download("TSLA", start="2020-01-01", end="2024-01-01", interval="1d")
+
+hoy = pd.Timestamp.today().strftime('%Y-%m-%d')
+df = yf.download("TSLA", start="2020-01-01", end=hoy, interval="1d")
 
 # Calcular Indicador
 ichimoku = Ichimoku_Cloud(df, periodo_tenkan=9, periodo_kijun=26)

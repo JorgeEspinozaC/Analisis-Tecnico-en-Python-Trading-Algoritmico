@@ -48,9 +48,11 @@ def MACD(df: pd.DataFrame, longitud_rapida: int = 12, longitud_lenta: int = 26, 
     MACD.columns = ["MACD", "Señal"]
     
     return MACD
+# fecha de hoy en formato yyyy-mm-dd
+hoy = pd.Timestamp.today().strftime('%Y-%m-%d')
 
 # Obtener Datos Históricos
-df = yf.download("NVDA", start="2020-01-01", end="2024-01-01", interval="1d")
+df = yf.download("NVDA", start="2020-01-01", end=hoy, interval="1d")
 
 # Calcular Indicador
 macd = MACD(df, longitud_rapida=12, longitud_lenta=26, longitud_señal=9)
@@ -64,6 +66,7 @@ ax1.set_title("Precio de Cierre", size=18, fontweight="bold")
 ax1.set_ylabel("Precio")
 ax1.legend(loc="upper left")
 ax1.grid(True)
+
 
 # Gráfico del MACD
 ax2.plot(macd.index, macd["MACD"], label="MACD", color="blue")

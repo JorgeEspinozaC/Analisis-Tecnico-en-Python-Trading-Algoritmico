@@ -43,7 +43,11 @@ def CCI(df: pd.DataFrame, longitud: int = 20, constante: float = 0.015) -> pd.Se
     return CCI_
 
 # Descargar Datos
-df = yf.download("AAPL", start="2020-01-01", end="2024-01-01", interval="1d")
+ticker = yf.Ticker("AAPL")
+
+# dia de hoy en formato yyyy-mm-dd
+hoy = pd.Timestamp.today().strftime("%Y-%m-%d")
+df = ticker.history(start="2020-01-01", end=hoy, interval="1d")
 
 # Calcular Indicador
 cci = CCI(df, longitud=20, constante=0.015)
