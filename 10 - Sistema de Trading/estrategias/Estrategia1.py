@@ -373,7 +373,7 @@ if __name__ == "__main__":
     import yfinance as yf
     import time
     # Obtener Datos
-    df = yf.download("AMZN", start="2022-01-01", end="2024-01-01", interval="1d")
+    df = yf.Ticker("AMZN").history( start="2022-01-01", end="2024-01-01", interval="1d")
     # Inicializar nuestra estrategia
     est1 = Estrategia1(df, longitud=30, longitud_ema=34, columna="Close", valores_indicador=[0, 4])
     print(est1)

@@ -29,7 +29,7 @@ def EjecutarSistema():
                     if intervalo not in marcos_ejecutar:
                         continue
                     # Descargar datos
-                    df = yf.download(instrumentos, interval=intervalo, period=periodo_descarga[intervalo])
+                    df = yf.Ticker(instrumentos).history( interval=intervalo, period=periodo_descarga[intervalo])
                     # Cambiar Nivel de Columnas
                     df.columns = df.columns.swaplevel(0, 1)
                     # Ejecutar Estrategias

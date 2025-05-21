@@ -404,7 +404,7 @@ if __name__ == "__main__":
     import yfinance as yf
     import time
     # Obtener Datos
-    df = yf.download("AAPL", start="2022-01-01", end="2024-01-01", interval="1d")
+    df = yf.Ticker("NFLX").history( start="2022-01-01", end="2024-01-01", interval="1d")
     # Definir parámetros
     rsi = {"longitud": 14, "columna": "Close"}
     bb = {"longitud": 20, "std_dev": 2.0, "ddof": 0, "columna": "Close"}

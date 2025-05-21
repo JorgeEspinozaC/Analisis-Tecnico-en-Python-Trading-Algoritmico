@@ -98,9 +98,9 @@ if __name__ == "__main__":
     # Importar librerías adicionales
     import yfinance as yf
     # Obtener Datos
-    df_est1 = yf.download("AMZN", start="2023-06-01", end="2024-01-01")
-    df_est2 = yf.download("TSLA", start="2023-06-01", end="2024-01-01")
-    df_est3 = yf.download("AAPL", start="2023-06-01", end="2024-01-01")
+    df_est1 = yf.Ticker("AMZN").history(start="2023-06-01", end="2024-01-01")
+    df_est2 = yf.Ticker("TSLA").history( start="2023-06-01", end="2024-01-01")
+    df_est3 = yf.Ticker("AAPL").history( start="2023-06-01", end="2024-01-01")
     # Definir parámetros
     estrategia1_params = {"df": df_est1, "longitud": 30, "longitud_ema": 34, "columna": "Close", "valores_indicador": [0, 4]}
     estrategia2_params = {"df": df_est2, "DMI": {}, "SM": {}}

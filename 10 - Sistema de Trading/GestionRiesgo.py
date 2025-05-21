@@ -16,7 +16,7 @@ for tipo, lista_activos in activos.items():
     print(f"Analizando: {tipo}")
     
     # Descargar los datos históricos
-    datos = yf.download(lista_activos, period="1y")["Close"]
+    datos = yf.Ticker(lista_activos).history(period="1y")["Close"]
     
     # Calcular la matriz de correlación
     correlacion = datos.corr()

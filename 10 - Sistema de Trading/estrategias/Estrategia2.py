@@ -481,7 +481,7 @@ if __name__ == "__main__":
     import yfinance as yf
     import time
     # Obtener Datos
-    df = yf.download("TSLA", start="2019-01-01", end="2024-01-01", interval="1d")
+    df = yf.Ticker("TSLA").history( start="2019-01-01", end="2024-01-01", interval="1d")
     # Instanciar Estrategia 
     dmi = {"suavizado_ADX": 14, "longitud_DI": 14}
     sm = {"longitud_bb": 20, "desviacion_std_bb": 2.0, "longitud_kc": 20, "multiplicador_kc": 1.5,
